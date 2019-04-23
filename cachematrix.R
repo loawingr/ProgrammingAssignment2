@@ -18,7 +18,7 @@ makeCacheMatrix <- function(x = matrix()) {
     ## return the cached cached inverted matrix
     getInverse <- function() inv
     ## return a list of the 4 named functions
-    list(set = set, get = get, setInverse = setInverse, getMean = getMean)
+    list(setMatrix = setMatrix, getMatrix = getMatrix, setInverse = setInverse, getInverse = getInverse)
 }
 
 
