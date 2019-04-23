@@ -21,9 +21,26 @@ makeCacheMatrix <- function(x = matrix()) {
     list(setMatrix = setMatrix, getMatrix = getMatrix, setInverse = setInverse, getInverse = getInverse)
 }
 
-
-## Write a short comment describing this function
+## cacheSolve() calculates the inversion of the special "vector" created with the above function.
+## However, it first checks to see if the inversion has already been calculated.
+## If so, it gets the inversion from the cache and skips the computation.
+## Otherwise, it calculates the inversion of the matrix and 
+## sets the value of the inverted matrix in the cache via setInverse().
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    ## get the cache contents
+    m <- x$getInverse()
+    ## see what is in the cache
+    if(!is.null(m)){
+        message("getting matrix inverse from cache")
+        return(m)
+    }
+    ## get the matrix we want to invert
+    data <- x$getMatrix()
+    ## calculate the matrix inversion
+    m <- solve(data, ...)
+    ## store the inverted matrix to the cache
+    x$setInverse(m)
+    ## return the inverted matrix
+    m
 }
